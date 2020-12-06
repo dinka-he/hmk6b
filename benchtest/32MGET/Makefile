@@ -21,4 +21,4 @@ LDFLAGS :=
 	$(CC) $^ $(CFLAGS) -c
 
 clean:
-	echo hell no;
+	rm *.o *.exe callgrind.*
