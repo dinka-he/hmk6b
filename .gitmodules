@@ -1,0 +1,6 @@
+[submodule "hiredis-upsteam/hiredis"]
+	path = hiredis-upsteam/hiredis
+	url = https://github.com/redis/hiredis.git
+[submodule "hiredis-ringbuf/hiredis"]
+	path = hiredis-ringbuf/hiredis
+	url = https://gitlab.eecs.umich.edu/dinka-he/hiredis
