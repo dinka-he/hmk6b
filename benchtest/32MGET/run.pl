@@ -66,6 +66,7 @@ if($ARGV[1] eq 'time'){
 elsif($ARGV[1] eq 'profile'){
     my $tmpFileName = $tmpFile->filename;
     `valgrind --tool=callgrind --instr-atstart=no --dump-instr=yes ./$testName.exe < $tmpFileName`;
+    `valgrind --tool=memcheck ./$testName.exe < $tmpFileName`;
 }
 else{
     &help();

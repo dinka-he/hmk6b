@@ -26,4 +26,4 @@ ringbuf_path := /home/hejohns/documentsNoSync/481/hmk6/hiredis-ringbuf/hiredis/
 	$(CC) $^ $(CFLAGS) -c
 
 clean:
-	rm *.o *.exe callgrind.* libhiredis.so.2.0.0-dev
+	rm *.o *.exe callgrind.* libhiredis.so.2.0.0-dev libhiredis.so.1.0.1-dev
