@@ -20,7 +20,7 @@ my $iterations = 2**10;
 my $tmpFile;
 my $testName = basename(getcwd());
 
-#`yes | make clean 2>/dev/null`;
+`make clean`;
 
 $ARGV[0] = $ARGV[0] // '';
 if($ARGV[0] eq 'upstream'){
