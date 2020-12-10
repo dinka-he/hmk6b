@@ -12,7 +12,7 @@ use File::Basename;
 use Cwd;
 
 sub help{
-    say "usage: $0 [master|ringbuf] [time|profile]";
+    say "usage: $0 [upstream|ringbuf] [time|profile]";
     exit;
 }
 
@@ -23,9 +23,9 @@ my $testName = basename(getcwd());
 #`yes | make clean 2>/dev/null`;
 
 $ARGV[0] = $ARGV[0] // '';
-if($ARGV[0] eq 'master'){
-    `make $testName.master.exe`;
-    `mv $testName.master.exe $testName.exe`;
+if($ARGV[0] eq 'upstream'){
+    `make $testName.upstream.exe`;
+    `mv $testName.upstream.exe $testName.exe`;
 }
 elsif($ARGV[0] eq 'ringbuf'){
     `make $testName.ringbuf.exe`;
@@ -51,7 +51,7 @@ if($ARGV[1] eq 'time'){
 }
 elsif($ARGV[1] eq 'profile'){
     my $tmpFileName = $tmpFile->filename;
-    `valgrind --tool=callgrind ./$testName.exe < $tmpFileName`;
+    `valgrind --tool=callgrind --instr-atstart=no --dump-instr=yes ./$testName.exe < $tmpFileName`;
 }
 else{
     &help();

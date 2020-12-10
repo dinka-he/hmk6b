@@ -8,6 +8,8 @@
 #include <time.h>
 #include <math.h>
 #include <string.h>
+#include <valgrind/callgrind.h>
+
 #include <hiredis.h>
 
 #define STR_(x) #x
@@ -46,9 +48,11 @@ int main(){
     redisReply *reply;
     reply = redisCommand(c, "SET %s %s", "foo", longString.lineptr);
     freeReplyObject(reply);
+    CALLGRIND_START_INSTRUMENTATION;
     clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &start);
     reply = redisCommand(c, "GET %s", "foo");
     clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &stop);
+    CALLGRIND_STOP_INSTRUMENTATION;
     if(strcmp(reply->str, longString.lineptr)){
         fprintf(stderr, "reply does not match\n");
         fprintf(stderr, "got: %s\n", longString.lineptr);
