@@ -26,10 +26,24 @@ $ARGV[0] = $ARGV[0] // '';
 if($ARGV[0] eq 'upstream'){
     `make $testName.upstream.exe`;
     `mv $testName.upstream.exe $testName.exe`;
+    my @so_name = `readelf -d $testName.exe`;
+    my $so_name = (grep {m/hiredis/} @so_name)[0];
+    $so_name =~ s/.*\[(.*)\].*/$1/;
+    my @upstream_path = `cat Makefile`;
+    my $upstream_path = (grep {m/upstream_path/} @upstream_path)[0];
+    $upstream_path =~ s/.*:=\s*(.*)\s*$/$1/;
+    `ln -s $upstream_path/libhiredis.so $so_name`;
 }
 elsif($ARGV[0] eq 'ringbuf'){
     `make $testName.ringbuf.exe`;
     `mv $testName.ringbuf.exe $testName.exe`;
+    my @so_name = `readelf -d $testName.exe`;
+    my $so_name = (grep {m/hiredis/} @so_name)[0];
+    $so_name =~ s/.*\[(.*)\].*/$1/;
+    my @ringbuf_path = `cat Makefile`;
+    my $ringbuf_path = (grep {m/ringbuf_path/} @ringbuf_path)[0];
+    $ringbuf_path =~ s/.*:=\s*(.*)\s*$/$1/;
+    `ln -s $ringbuf_path/libhiredis.so $so_name`;
 }
 else{
     &help();

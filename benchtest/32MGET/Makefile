@@ -10,13 +10,13 @@ ringbuf_path := /home/hejohns/documentsNoSync/481/hmk6/hiredis-ringbuf/hiredis/
 
 # link to upstream libhiredis
 32MGET.upstream.exe: LDFLAGS += -L$(upstream_path)
-32MGET.upstream.exe: LDFLAGS += -lhiredis
+32MGET.upstream.exe: LDFLAGS += -l:libhiredis.so -Wl,-rpath=$(shell pwd)
 32MGET.upstream.exe: 32MGET.o
 	$(CC) $^ $(CFLAGS) $(LDFLAGS) -o $@
 
 # link to libhiredis patched w/ ringbuf
 32MGET.ringbuf.exe: LDFLAGS += -L$(ringbuf_path)
-32MGET.ringbuf.exe: LDFLAGS += -lhiredis
+32MGET.ringbuf.exe: LDFLAGS += -l:libhiredis.so -Wl,-rpath=$(shell pwd)
 32MGET.ringbuf.exe: 32MGET.o
 	$(CC) $^ $(CFLAGS) $(LDFLAGS) -o $@
 
@@ -26,4 +26,4 @@ ringbuf_path := /home/hejohns/documentsNoSync/481/hmk6/hiredis-ringbuf/hiredis/
 	$(CC) $^ $(CFLAGS) -c
 
 clean:
-	rm *.o *.exe callgrind.*
+	rm *.o *.exe callgrind.* libhiredis.so.2.0.0-dev
