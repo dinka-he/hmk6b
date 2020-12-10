@@ -6,12 +6,12 @@ LDFLAGS :=
 .PHONY: clean
 
 # link to master libhiredis
-32MGET.master.exe: LDFLAGS += /home/hejohns/documentsNoSync/481/hmk6/hiredis/libhiredis.so
+32MGET.master.exe: LDFLAGS += /home/hejohns/documentsNoSync/481/hmk6/hiredis-upstream/hiredis/libhiredis.so
 32MGET.master.exe: 32MGET.o
 	$(CC) $^ $(CFLAGS) $(LDFLAGS) -o $@
 
 # link to libhiredis patched w/ ringbuf
-32MGET.ringbuf.exe: LDFLAGS += /home/hejohns/documentsNoSync/481/hmk6/hiredis/libhiredis.so
+32MGET.ringbuf.exe: LDFLAGS += /home/hejohns/documentsNoSync/481/hmk6/hiredis-ringbuf/hiredis/libhiredis.so
 32MGET.ringbuf.exe: 32MGET.o
 	$(CC) $^ $(CFLAGS) $(LDFLAGS) -o $@
 
