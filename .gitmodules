@@ -1,5 +1,5 @@
 [submodule "hiredis-upsteam/hiredis"]
-	path = hiredis-upsteam/hiredis
+	path = hiredis-upstream/hiredis
 	url = https://github.com/redis/hiredis.git
 [submodule "hiredis-ringbuf/hiredis"]
 	path = hiredis-ringbuf/hiredis
